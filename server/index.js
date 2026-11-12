@@ -20,6 +20,17 @@ console.log("=================================");
 // Middleware
 app.use(cors());
 app.use(express.json());
+//health check
+app.get("/", (req, res) => {
+    res.send("Eventora Backend is Live!");
+});
+
+app.get("/health", (req, res) => {
+    res.status(200).json({
+        success: true,
+        message: "Eventora API is running"
+    });
+});
 
 // Routes
 app.use('/api/auth', authRoutes);
